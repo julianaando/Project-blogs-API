@@ -1,3 +1,5 @@
+// config.js
+
 const environment = process.env.NODE_ENV || 'test';
 
 const suffix = {
