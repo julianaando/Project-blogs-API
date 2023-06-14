@@ -1,8 +1,8 @@
-const { user } = require('../models');
+const { User } = require('../models');
 const { createToken } = require('../auth/validateJWT');
 
 const login = async ({ email, password }) => {
-  const findUser = await user.findOne({ where: { email } });
+  const findUser = await User.findOne({ where: { email } });
 
   if (!email || !password) {
     return { type: 400, message: 'Some required fields are missing' };
