@@ -1,8 +1,6 @@
-// initial commit
-
 const express = require('express');
 
-// ...
+const { loginRouter } = require('./routes');
 
 const app = express();
 
@@ -12,8 +10,11 @@ app.get('/', (_request, response) => {
 });
 
 app.use(express.json());
+app.use('/login', loginRouter);
 
-// ...
+app.get('/ping', (_request, response) => {
+  response.send('pong');
+});
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
