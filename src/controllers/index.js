@@ -1,7 +1,7 @@
 const loginController = require('./login');
-// const getByUserEmail = require('./getUserByEmail');
+const userController = require('./user');
 
 module.exports = { 
   loginController,
-  // getByUserEmail,
+  userController,
 };
