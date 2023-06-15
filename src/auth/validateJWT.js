@@ -1,3 +1,5 @@
+// auth/validateJWT.js
+
 const jwt = require('jsonwebtoken');
 const assert = require('assert');
 
