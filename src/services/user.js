@@ -20,12 +20,21 @@ const { createToken } = require('../auth/validateJWT');
     const users = await User.findAll();
     const usersWithoutPassword = users.map((user) => {
       const { password, ...userWithoutPassword } = user.toJSON();
-      return userWithoutPassword; // retorna cada usuário sem a senha
+      return userWithoutPassword;
     });
-    return usersWithoutPassword; // retorna todos os usuários sem a senha
+    return usersWithoutPassword;
+  };
+
+  const getUserById = async (id) => {
+    const user = await User.findByPk(id);
+    if (!user) return { type: 404, message: 'User does not exist' };
+    const userWithoutPassword = user.toJSON();
+    delete userWithoutPassword.password;
+    return { type: null, message: userWithoutPassword };
   };
 
   module.exports = {
     createUser,
     getAllUsers,
+    getUserById,
   };
