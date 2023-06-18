@@ -17,15 +17,15 @@ module.exports = {
         allowNull:false,
         type:Sequelize.STRING
       },
-      userId: {
+      user_id: {
         allowNull:false,
         type:Sequelize.INTEGER,
-        field:'user_id',
+        // field: 'user_id',
         references: {
           model: 'users',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
+        // onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       published: {

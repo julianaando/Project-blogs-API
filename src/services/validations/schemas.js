@@ -6,6 +6,14 @@ const userSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const blogSchema = Joi.object({
+  title: Joi.string().min(1).required(),
+  content: Joi.string().min(1).required(),
+}).messages({
+    'string.empty': 'Some required fields are missing',
+  });
+
 module.exports = {
   userSchema,
+  blogSchema,
 };
