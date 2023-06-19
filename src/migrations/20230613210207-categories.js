@@ -1,3 +1,5 @@
+// migrations/20230613210207-categories.js
+
 'use strict';
 
 module.exports = {
@@ -10,6 +12,7 @@ module.exports = {
         type:Sequelize.INTEGER
       },
       name: {
+        allowNull:false,
         type:Sequelize.STRING,
       },
     });

@@ -3,7 +3,7 @@
 const { decodeToken } = require('../auth/validateJWT');
 
 const validateToken = async (req, res, next) => {
-  const token = req.headers.authorization.replace(/^Bearer\s+/, '');
+  const { authorization: token } = req.headers;
 
   if (!token) {
     return res.status(401).json({ message: 'Token not found' });
@@ -14,7 +14,6 @@ const validateToken = async (req, res, next) => {
     if (!decoded) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
-    req.user = decoded;
     next();
   } catch (error) {
     console.error(error);

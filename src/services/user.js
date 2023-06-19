@@ -22,7 +22,7 @@ const { createToken } = require('../auth/validateJWT');
       const { password, ...userWithoutPassword } = user.toJSON();
       return userWithoutPassword;
     });
-    return usersWithoutPassword;
+    return { type: null, message: usersWithoutPassword };
   };
 
   const getUserById = async (id) => {

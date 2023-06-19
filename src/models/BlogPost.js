@@ -1,4 +1,6 @@
-const BlogPostModel = (sequelize, DataTypes) => {
+// models/BlogPost.js
+
+module.exports = (sequelize, DataTypes) => {
   const BlogPost = sequelize.define('BlogPost', {
     id: { 
       type: DataTypes.INTEGER, 
@@ -7,21 +9,12 @@ const BlogPostModel = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    userId: { 
+    userId:{ 
       type: DataTypes.INTEGER,
-      references: {
-        model: 'users',
-        key: 'id',
-      }
+      defaultValue: 1,
     },
-    published: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    },
-    updated: { 
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    },
+    published: DataTypes.DATE,
+    updated: DataTypes.DATE,
   },
   {
     timestamps: false,
@@ -32,16 +25,8 @@ const BlogPostModel = (sequelize, DataTypes) => {
 
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User,
-      { foreignKey: 'user_id', as: 'user' });
-
-    BlogPost.belongsToMany(models.Category, {
-    through: 'PostCategory',
-    foreignKey: 'post_id',
-    as: 'categories',
-    });
+      { foreignKey: 'userId', as: 'user' });
   };
 
   return BlogPost;
 }
-
-module.exports = BlogPostModel;
